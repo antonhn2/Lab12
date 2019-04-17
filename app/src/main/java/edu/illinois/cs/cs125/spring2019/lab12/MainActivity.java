@@ -3,6 +3,9 @@ package edu.illinois.cs.cs125.spring2019.lab12;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -13,6 +16,7 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 /**
  * Main class for our UI design lab.
@@ -37,6 +41,15 @@ public final class MainActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
 
         setContentView(R.layout.activity_main);
+
+        Button lookupAddress = (Button) findViewById(R.id.lookup_address);
+        lookupAddress.setOnClickListener(new View.OnClickListener() {
+            public void onClick(final View v) {
+                startAPICall("192.17.96.8");
+                TextView address = (TextView) findViewById(R.id.ip_address);
+                address.setText("hello");
+            }
+        });
 
         startAPICall("192.17.96.8");
     }
